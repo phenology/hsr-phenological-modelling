@@ -13,7 +13,7 @@ The files downloaded from the Earth Explorer contain single band geotiffs for ea
 The files downloaded from the USGS website only contain a single metric (SOST, in our case)
 
 ## Change projection and mask CONUS 
-After unzipping the files donwloaded from EE to a single folder we run the [processPHA_SIx batch file](processPHA_SIx.bat) to change their projection and to crop them. To run this  file simply type the filename in your Windows console:
+After unzipping the files donwloaded from EE to a single folder we run the [processPHA_SIx batch file](processPHA_SIx.bat) to change their projection and to crop them. This is done by simply typing the filename in the Windows console:
 
 ```
 > ProcessPHA_SIx.bat
@@ -22,7 +22,7 @@ After unzipping the files donwloaded from EE to a single folder we run the [proc
 This pre-processing is needed because these files will be used together with the spring indices produced using [Google Earth Engine](https://earthengine.google.com/) 
 
 The coordinates of the bounding box needed to run gdalwarp were obtained using QGIS.  
-The shapefilefile statesContuguos can be found [here](/.../...).  
+The shapefilefile statesContuguos can be found [here](statesContuguos.zip). The typo in the filename is mantained for "historical reasons" ;-).   
 
 ## Upload GeoTiffs to HDFS
 To upload the GeoTiffs to HDFS please follow the [data loading instructions for Phenology's infra-structure](https://github.com/phenology/infrastructure/tree/applications/applications).
