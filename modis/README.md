@@ -54,6 +54,7 @@ mosaic_convert_modis.sh
 ### USA mask for modis data
 To create a mask for USA we have used [QGIS](http://www.qgis.org/en/site/) and the polygon [usa_contiguous.shp](usa_contiguous.shp). The result is [usa_contiguous.tif](usa_contiguous.tif).
 
+
 ## Upload GeoTiffs to HDFS
 
 To upload the GeoTiffs to HDFS please follow the [data loading instructions for Phenology's infra-structure](https://github.com/phenology/infrastructure/tree/applications/applications).
