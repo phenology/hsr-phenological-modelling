@@ -9,9 +9,9 @@ In this project we use [MCD12Q2](https://lpdaac.usgs.gov/dataset_discovery/modis
 
 * Select the mode of download. We have used **Direct Download** and then requested the list of links. With [wget](https://www.gnu.org/software/wget/manual/wget.html) or using [addOn DownloadAll for Firefox](https://addons.mozilla.org/en-US/firefox/addon/downthemall/) the user can download all files which are in **HDF** format.
 
-* For projections or to mosaic the granules it is necessary to download the *.xml* files as well. To download them install [**wget**](), use the [list of files]() with *.xml* as extension and run:
+* For projections or to mosaic the granules it is necessary to download the *.xml* files as well. To download them install [**wget**](https://www.gnu.org/software/wget/manual/wget.html), use the [list of files](usa_xml.txt) with *.xml* as extension and run:
 ```
-get.sh files.xml
+get_xml_files.sh usa_xml.txt
 ```
 
 ## Convert to GeoTiffs
@@ -52,7 +52,7 @@ mosaic_convert_modis.sh
 ```
 
 ### USA mask for modis data
-
+To create a mask for USA we have used [QGIS](http://www.qgis.org/en/site/) and the polygon [usa_contiguos.shp](usa_contiguos.shp) and the result is [usa_contiguos.tif](usa_contiguos.tif).
 
 ## Upload GeoTiffs to HDFS
 
