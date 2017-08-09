@@ -1,4 +1,4 @@
-# Modis
+# MODIS
 
 In this project we use [MCD12Q2](https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q2) version 5 product.
 
@@ -16,7 +16,7 @@ get_xml_files.sh usa_xml.txt
 
 ## Convert to GeoTiffs
 
-USA without Alaska touches in 17 granules and version 5 of MCD12Q2 product only data for 14 years. Using [modis_mosaic from **pyModis**](http://www.pymodis.org/scripts/modis_mosaic.html) we will create 14 mosaics with each of them composed by 17 granules. The each mosaic is saved as a GeoTiff, i.e., each year is represented as a GeoTiff.  
+USA without Alaska, Hawaii, etc (aka CONUS) touches in 17 granules and version 5 of MCD12Q2 product only data for 14 years. Using [modis_mosaic from **pyModis**](http://www.pymodis.org/scripts/modis_mosaic.html) we will create 14 mosaics with each of them composed by 17 granules. The each mosaic is saved as a GeoTiff, i.e., each year is represented as a GeoTiff.  
 
 ### Install pymodis
 The following commands will install pymodis on your Ubuntu environment.
@@ -51,8 +51,8 @@ The argument **-e 4326** is to re-project the grid from **sinusoidal** to **EPSG
 mosaic_convert_modis.sh
 ```
 
-### USA mask for modis data
-To create a mask for USA we have used [QGIS](http://www.qgis.org/en/site/) and the polygon [usa_contiguous.shp](usa_contiguous.shp). The result is [usa_contiguous.tif](usa_contiguous.tif).
+### CONUS mask for modis
+To create a CONUS mask (grid format) we  used [QGIS](http://www.qgis.org/en/site/) and rasterized the polygon [usa_contiguous.shp](usa_contiguous.shp). The result is [usa_contiguous.tif](usa_contiguous.tif).
 
 
 ## Upload GeoTiffs to HDFS
