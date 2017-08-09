@@ -37,22 +37,22 @@ create_files_list.sh <path_to_hdf_files_directory>
 
 The command above will create 14 files with the following nomenclature *<year>.files*.
 
-The other arguments are **-s** where we specify which band we want to extract, **-o** string to be appended to the ouptup files, and **-v** to create a GDAL VRT file. For year 2004 the a mosaic for each band is created like this:
+The other arguments are **-s** where we specify which band we want to extract, **-o** string to be appended to the output files, and **-v** to create a GDAL VRT file. For year 2004 the a mosaic for each band is created like this:
 ```
 #Create a VRT file for each of the 8 bands
 modis_mosaic.py -s "1 1 1 1 1 1 1 1" -o "" -v 2004.files
 
-#Take a band, Onset_Greeness_Increase, and create a single band GEOtiff. 
+#Take a band, Onset_Greeness_Increase, and create a single band GeoTiff. 
 modis_convert.py -v -s "( 1 )" -o A2004\001__Onset_Greenness_Increase -e 4326 A2004\001__Onset_Greenness_Increase.vrt
 ```
 
-The argument **-e 4326** is to re-project the grid from **sinusoidal** to **EPSG 4326**. To do the same for all years and bands simlpy do:
+The argument **-e 4326** is to re-project the grid from **sinusoidal** to **EPSG 4326**. To do the same for all years and bands simply do:
 ```
 mosaic_convert_modis.sh
 ```
 
 ### USA mask for modis data
-To create a mask for USA we have used [QGIS](http://www.qgis.org/en/site/) and the polygon [usa_contiguos.shp](usa_contiguos.shp) and the result is [usa_contiguos.tif](usa_contiguos.tif).
+To create a mask for USA we have used [QGIS](http://www.qgis.org/en/site/) and the polygon [usa_contiguous.shp](usa_contiguous.shp) and the result is [usa_contiguous.tif](usa_contiguous.tif).
 
 ## Upload GeoTiffs to HDFS
 
