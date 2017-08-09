@@ -22,7 +22,7 @@ After unzipping the files downloaded from EE to a single folder we run the [proc
 This pre-processing is needed because these files will be used together with the spring indices produced using [Google Earth Engine](https://earthengine.google.com/) 
 
 The coordinates of the bounding box needed to run gdalwarp were obtained using QGIS.  
-The shapefile statesContiguous can be found [here](statesContuguos.zip). The typo in the filename is maintained for "historical reasons" ;-).   
+The shapefile statesContiguous can be found [here](statesContiguous.zip).
 
 ## Upload GeoTiffs to HDFS
 To upload the GeoTiffs to HDFS please follow the [data loading instructions for Phenology's infra-structure](https://github.com/phenology/infrastructure/tree/applications/applications).
