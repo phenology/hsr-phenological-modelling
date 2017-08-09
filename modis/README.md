@@ -46,7 +46,7 @@ modis_mosaic.py -s "1 1 1 1 1 1 1 1" -o "" -v 2004.files
 modis_convert.py -v -s "( 1 )" -o A2004\001__Onset_Greenness_Increase -e 4326 A2004\001__Onset_Greenness_Increase.vrt
 ```
 
-The argument **-e 4326** is to re-project the grid from **sinusoidal** to **EPSG 4326** coordiante system. To do the same for all years and bands simply run:
+The argument **-e 4326** is to re-project the grid from **sinusoidal** to **EPSG 4326** coordinate system. To do the same for all years and bands simply run:
 ```
 mosaic_convert_modis.sh
 ```
