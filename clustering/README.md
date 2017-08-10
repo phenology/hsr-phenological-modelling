@@ -17,12 +17,13 @@ Notebook | Brief description
 [create_wssse_csv](https://github.com/phenology/infrastructure/blob/applications/applications/notebooks/stable/create_wssse_csv.ipynb) | To load an Array of triples stored as objectFile and save it again as a CSV file
 [plot_kmeans_clusters](https://github.com/phenology/infrastructure/blob/applications/applications/notebooks/stable/plot_kmeans_clusters.ipynb)| To plot the GeoTiffs created out of kmeans. Such GeoTiffs contain the cluster IDs
 [plot_kmeans_clusters-Light](https://github.com/phenology/infrastructure/blob/applications/applications/notebooks/stable/plot_kmeans_clusters-Light.ipynb)|light version of previous notebook. 
+[satellite_model_corr_len_neg](https://github.com/phenology/infrastructure/blob/applications/applications/notebooks/stable/satellite_model_corr_len_neg.ipynb) | To calculate the correlation between spring indices and AVHRR SOS (loaded from Geotiffs)
 
 # Correlation
 The ecological meaning of land surface phenological metrics is not fully clear yet. To shed light on this, we performed a spatio-temporal correlation analysis between the Leaf and Bloom indices and the SOS metric. The first step in the correlation analysis was to deal with the negative values in the AVHRR SOS metric.
 
 From the metadata of the AVHRR phenology products: 
-> The SOST units indicate the day of the year when positive; negative values indicate a SOST day in the previous year (for example, a SOST value of -10 for 2002 indicates a start of season day of 355 in 2001). Valid values range from -150 to 365. In the SOST data layer, a cell value of 1000 represents water bodies and a cell value of -1000 represents the area where a SOST could not be detected due to insufficient change in time-series NDVI or due to lack of sufficient input data
+> The SOST units indicate the day of the year when positive; negative values indicate a SOST day in the previous year (for example, a SOST value of -10 for 2002 indicates a start of season day of 355 in 2001). Valid values range from -150 to 365. In the SOST data layer, a cell value of 1000 represents water bodies and a cell value of -1000 represents the area where a SOST could nott be detected due to insufficient change in time-series NDVI or due to lack of sufficient input data
 
 Thus, we first transformed the negative numbers [-150,0) to positive numbers representing the day of year (of year -1)
 Then we calculated the per pixel Pearson correlation between each of hte spring indices and the AVHRR SOS value.
