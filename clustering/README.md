@@ -5,7 +5,7 @@ Different kind of *phenoregions* are defined based from the leaf and bloom indic
 
 The optimal *k* value was identified by the ”elbow” of the [Within Cluster Sum of Squared Error (WCSSE) graph](https://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set).
 
-*Phenoregions* were obtained by applying *k*-means to a matrix with as many rows as valid grid cells in CONUS, and as many columns as years in the database. The SCALA/Python code was embedded in [Jupyter notebooks](https://github.com/phenology/infrastructure/tree/applications/applications/notebooks/stable) and run in a SPARK cluster.
+*Phenoregions* were obtained by applying *k*-means to a matrix with as many rows as valid grid cells in [CONUS](https://en.wikipedia.org/wiki/Contiguous_United_States), and as many columns as years in the database. The SCALA/Python code was embedded in [Jupyter notebooks](https://github.com/phenology/infrastructure/tree/applications/applications/notebooks/stable) and run in a SPARK cluster.
 
 A brief overview of the existing notebooks is as follows:  
 
@@ -25,8 +25,7 @@ The ecological meaning of land surface phenological metrics is not fully clear y
 From the meta data of the AVHRR phenology products: 
 > The SOST units indicate the day of the year when positive; negative values indicate a SOST day in the previous year (for example, a SOST value of -10 for 2002 indicates a start of season day of 355 in 2001). Valid values range from -150 to 365. In the SOST data layer, a cell value of 1000 represents water bodies and a cell value of -1000 represents the area where a SOST could not be detected due to insufficient change in time-series NDVI or due to lack of sufficient input data
 
-Thus, we first transformed the negative numbers [-150,0) to positive numbers representing the day of year (of year -1)
-Then we calculated the per pixel Pearson correlation between each of the spring indices and the AVHRR SOS value.
+Thus, we first transformed the negative numbers [-150,0) to positive numbers representing the day of year (of year -1). Then we calculated the per pixel Pearson correlation between each of the spring indices and the AVHRR SOS value.
 Interestingly, we saw areas with moderate to high negative correlation. These areas correspond to locations where phenology seems to be driven by other environmental factors (e.g. water), and to areas where the SOS happens in the second half of the year (i.e. cells with negative values in the original AVHRR SOS product).
 
 # Output
