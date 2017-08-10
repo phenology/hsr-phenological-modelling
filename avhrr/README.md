@@ -9,7 +9,7 @@ NB: The geotiff for 2014 was downloaded from the following USGS [website](https:
 
 In Earth Explorer (EE), the user needs to click the **Data Sets** tab. Then go to *Vegetation Monitoring*, tick the box *AVHRR phenology* and press *results*. This lists all the AVHRR phenological datasets, which have to be downloaded manually by clicking on the download icon next to each little map. We selected the geotiff format. NB: users need to create an account to be able to download this data
 
-The files downloaded from the Earth Explorer contain single band geotiffs for each of the 9 available metrics 
+The files downloaded from the Earth Explorer contain single band geotiffs for each of the 9 available metrics (see table below).  
 The files downloaded from the USGS website only contain a single metric (SOST, in our case)
 
 Parameter | Acronym | Phenological Description
