@@ -1,2 +1,5 @@
-# hsr-phenological-modelling
-High spatial resolution (HSR) phenological modelling - general respository.
+# High spatial resolution (HSR) phenological modelling - general respository.
+
+Phenology studies the timing of recurring plant and animal biological phases, their causes, and their interrelations. This seasonal timing varies from year to year and from place to place because it is strongly influenced by weather and climatic variability. Understanding phenological variability is critical to quantify the impact of climate change on the global biogeochemical cycles (e.g. changes in the carbon and water cycles) as well as to manage natural resources (e.g. timing of animal migration), food production (e.g. timing of agricultural activities), public health (e.g. timing of hay fever), and even for tourism (e.g. timing of excursions).
+
+A major obstacle in phenological modeling is the computational intensity and the extreme data size when working at continental scale and with high spatial resolution grids of explanatory variables (e.g. weather and remotely sensed data). We believe that moving our phenological modelling workflows to a modern big-data platform such as Spark will allows us to more easily experiment with novel analytical methods to generate phenological metrics at high spatial resolution (1 km) and to identify phenoregions (i.e. regions with similar phenology) by clustering time series of phenological metrics.
