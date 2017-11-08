@@ -1,0 +1,241 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+\usepackage{url} 
+\usepackage{amsmath,epsfig}
+
+\usepackage{amsfonts}
+\usepackage[bottom]{footmisc} %%% footnote under table and/or figure 
+\usepackage{cite}
+\usepackage{subfigure}
+\usepackage[bookmarks=false]{hyperref}
+\usepackage[font=small,labelfont=bf]{caption}
+
+\def\x{{\mathbf x}}
+\def\z{{\mathbf z}}
+\def\X{{\mathbf X}}
+\def\C{{\mathbf C}}
+\def\Y{{\mathbf Y}}
+\def\A{{\mathbf A}}
+\def\B{{\mathbf B}}
+\def\W{{\mathbf W}}
+\def\Z{{\mathbf Z}}
+\def\w{{\mathbf w}}
+\def\U{{\mathbf U}}
+\def\V{{\mathbf V}}
+\def\S{{\mathbf S}}
+\def\F{{\mathbf F}}
+\def\L{{\mathbf L}}
+\def\y{{\mathbf y}}
+\def\m{{\mathbf m}}
+\def\M{{\mathbf M}}
+\def\H{{\mathbf H}}
+\def\v{{\mathbf v}}
+\def\G{{\mathbf G}}
+\def\I{{\mathbf I}}
+\def\1{{\mathbf 1}}
+\def\D{{\mathbf D}}
+\def\d{{\mathbf d}}
+\def\E{{\mathbf E}}
+\def\K{{\mathbf K}}
+\def\k{{\mathbf k}}
+\def\l{{\mathbf l}}
+\def\e{{\mathbf e}}
+\def\u{{\mathbf u}}
+\def\t{{\mathbf t}}
+\def\0{{\mathbf 0 }}
+\def\R{\mathbb{R}}
+\def\p{{\Phi}}
+\def\P{{\mathbf{\Phi}}}
+\def\argmin{\mathop{\rm arg~min}}
+\def\argmax{\mathop{\rm arg~max}}
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Singular Value Decomposition} % Title
+
+\author{Emma Izquierdo-Verdiguier, Romulo Gon\c{c}alves and Ra\'ul Zurita-Milla} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+
+
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% 
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Introduction:}
+Singular Value Decomposition (SVD) is a factorization of matrix base on in decomposition of eigenvectors and eigenvalues. However, SVD is used in several fields such as signal processing and statistics to analyse the variability of the data. In the last decade, SVD was applied in remote sensing applications like feature extraction (dimensionality reduction) [1] or spatio-temporal analysis using multiple remote sensing data sets [2]. In this project the SVD is used to analyse the spatio-temporal relations between temperature-based phenological indices and land surface phenological metrics.\\
+
+SVD is a generalization of the eigenvalue-vector decomposition, which is well-known by the Principal Components Analysis (PCA) [3]. A sort review of eigenvalue-vector decomposition and SVD mathematical definitions are describe below. 
+
+\section{Definitions:}
+This section is based on the work [4].
+
+\subsection{Eigenvalue-vector decomposition}
+Let $\A$ be a square ($N \times N$) matrix, it is possible to compute its spectral decomposition into eigenvalues and eigenvectors ($\A=\U^{-1}\boldsymbol{\Lambda} \U$) if $\A$ satisfies the linear equation:
+\begin{equation}
+\label{Eigeneq2} \A \U=\boldsymbol{\Lambda} \U 
+\end{equation}
+where $\U$ is the matrix whose columns are the eigenvectors ($\u_i$) of $\A$ and $\boldsymbol{\Lambda}$ is a diagonal matrix whose principal diagonal is formed by the eigenvalues ($\lambda_i$) of $\A$. The equation~\eqref{Eigeneq2} is known as the {\em standard eigenvalue problem}. If $\U$ is an orthonormal matrix ($\U^{\top}\U=1$) then $\A$ is orthogonally diagonalizable: $\A=\U^{\top}\boldsymbol{\Lambda} \U$.
+There exist many ways of solving the equation~\eqref{Eigeneq2} depending on the matrix size and the matrix rank.
+
+\subsection{ Singular value decomposition}
+Let $\A$ be a matrix ($N \times M$), the {\em Singular Value Decomposition} (SVD) is a factorization of the matrix in singular values and singular vectors that consists on: $\A=\U\boldsymbol{\Sigma} \V^{\top}$ where $\U \in \mathbb{R}^{N \times N}$ is made up of unit eigenvectors associated with non-zero eigenvalues of $\A\A^{\top}$ (and it is also known {\em right eigenvectors}), $\V \in \mathbb{R}^{M \times M}$ is made up of unit eigenvectors associated with non-zero eigenvalues of $\A^{\top}\A$ (and it is also known {\em left eigenvectors}), and $\boldsymbol{\Sigma}$ is a diagonal matrix that contains the Singular Values of $\A$ sorted in descending order. The Singular Values are the square root eigenvalues of $\A\A^{\top}$. We can express also the SVD in vectorial from: $\A=\sum_{i=1}^{d_f} \lambda_i \u_i \v_i^{\top}$.\\
+
+So, to calculated the PCA of the data matrix ($\X$) is possible by two ways:
+
+\begin{enumerate}
+\item Eigenvalue decomposition of the covariance matrix $\C= X^{\top}X$ ($\C = \V\boldsymbol{\Lambda} \V^{\top}$). Then the principal components are the projection matrix $\V$ and follows eq.(\ref{Eigeneq2}).
+
+\item Singular value decomposition of $\X$ ($\X=\U\boldsymbol{\Sigma}\V^{\top}$). In this case, 
+\begin{equation}
+ \begin{split}
+\label{svd} \C= X^{\top}X = (\U\boldsymbol{\Sigma}\V^{\top})^{\top}(\U\boldsymbol{\Sigma}\V^{\top}) = \V \frac{\boldsymbol{\Sigma}^2}{n-2} \V^{\top}.\\
+ \end{split}
+\end{equation}
+Then, the principal components are the projection matrix $\V$ and follows: 
+\begin{equation}
+ \begin{split}
+\label{svd2} 
+\X\V=\U\boldsymbol{\Sigma}, 
+ \end{split}
+\end{equation}
+\end{enumerate}
+
+\subsubsection{centred of matrices:}
+The principal components are sensitive to the scaling of the data. In general the data have to be scaling, although it is possible to find some examples about un-centered PCA [5-6]. Different ways to scale the data are possible to implement (fixing or not the the origin of the data). In this case, three implementations will be done:
+\begin{enumerate}
+\item Without centrer the data: $\X$
+\item Centring the original data ( the mean of the data per dimension is equal to zero): $\X-mean(\X)$
+\item {\em Decorrelating} the original data, i.e. their covariance are the identity matrix: ${(\X-mean(\X))}/{std(\X)}$
+\end{enumerate}
+
+
+
+% Let $\A$ and $\B$ be two matrices where $\A \in \R^{M_1 \times N}$ and $\B \in \R^{M_2 \times N}$, the {\em Singular Value Decomposition} (SVD) is a factorization of the matrix in singular values and singular vectors that consists on: $\A\B^{\top}=\U\boldsymbol{\Sigma} \V^{\top}$ where $\U \in \mathbb{R}^{M_1 \times M_1}$ is made up of unit eigenvectors associated with non-zero eigenvalues of $\A\B^{\top}$, $\V \in \mathbb{R}^{N \times N}$ is made up of unit eigenvectors associated with non-zero eigenvalues of $\A^{\top}\B$, and $\boldsymbol{\Sigma}$ is a diagonal matrix that contains the Singular Values of $\A\B^{\top}$ sorted in descending order. The Singular Values are the square root eigenvalues of $\A\B^{\top}$. We can express also the SVD in vectorial from: $\A\B^{\top}=\sum_{i=1}^{d_f} \lambda_i \u_i \v_i^{\top}$.
+
+\section{Case study: Spatio-temporal phenological analysis}
+As mentioned before, we would like to analysis the spatio-temporal relations between temperature-based phenological indices and land surface phenological metrics. In this case, we have the temperature-based phenological index (matrix $\A \in \R^{M_1 \times N}$) and surface phenological metric (matrix $\B \in \R^{M_2 \times N}$), where $M_1$ and $M_2$ are the spatial dimension, and they are equal if and only if the spatial resolution in both data sets are equal. And $N$ is the temporal dimension. To analyse the relations between them, the singular value decomposition of $\A\B^{\top}$ is calculated.\\
+
+In this case, $\A\B^{\top} \V =\boldsymbol{\Sigma} \U$ (eq.(\ref{svd2})), where the projection matrix $\U \in \R^{M_1 \times M_1}$ (right eigenvectors) are the {\em spatial principal components} and $\V \in \R^{N \times N}$ (left eigenvectors) are the {\em temporal principal components}.
+
+
+
+
+\section*{References}
+\small{[1] E. Izquierdo-Verdiguier, L. Gómez-Chova, L. Bruzzone and G. Camps-Valls,{\em ``Semisupervised Kernel Feature Extraction for Remote Sensing Image Analysis''}, IEEE Transactions on Geoscience and Remote Sensing, vol. 52, no. 9, pp. 5567-5578, Sept. 2014.}\\
+
+\small{[2] J. Li, B. E. Carlson and A. A. Lacis, {\em ``Application of spectral analysis techniques in the intercomparison of aerosol data: 1. An EOF approach to analyze the spatial-temporal variability of aerosol optical depth using multiple remote sensing data sets''}, Journal of Geophysical Research: Atmospheres, Vol. 118, 8640–8648, 2013.}\\
+
+\small{[3] Jolliffe, I. T. (2010). {\em ``Principal Component Analysis''}, Springer, 2nd edition.}\\
+
+\small{[4] E. Izquierdo-Verdiguier, {\em  ``Kernel Feature Extraction Methods for Remote Sensing Data Analysis''}, PhD Thesis, University of Valencia, $2014$.}\\
+
+\small{[5] J. Cadima and I. Jolliffe, {\em  ``On Relationships between Uncentred and Column-Centred Principal Component Analysis''}, Pakistan Journal of Statistics, vol. 25, no. 4, pp. 473–503, 2009.}\\
+
+\small{[6] R. Jenssen,{``Mean vector component analysis: A new approach to un-centered PCA for non-negative data''}, 2013 IEEE International Workshop on Machine Learning for Signal Processing (MLSP).}
+
+% \section{Bregman divergence:}
+% The Bregman divergence is calculated as $\small{d_{\phi}(\x,\y)=\phi(\x)-\phi(\y)-\left<{\x-\y,\nabla(\y)}\right> }$. 
+% \begin{figure}[h!]
+% \begin{center}
+% \includegraphics[width=6cm]{./Figuras/BregmanDivergence.pdf}
+% \end{center}
+% \end{figure}
+% 
+% \newpage
+% Taking into account the function $\phi$, several type of distance can be calculated. For instance:
+% \begin{itemize}
+% \item If $\phi(\x) =  \left\|{\x}\right\|^2$: $d_{\phi}(\x,\y)=\left\|{\x-\y}\right\|^2$, that is Square Euclidean distance.\\
+% \begin{figure}[h!]
+% \begin{center}
+% \includegraphics[width=8cm]{./Figuras/EuclideanDivergence.pdf}
+% \end{center}
+% \end{figure}
+% \item If $\phi(\p) =  \sum_{j=1}^m p_j log(p_j)$ (negative Entropy): $d_{\phi}(\p)=\sum_{j=1}^m p_j log \frac{p_j}{q_j}$, that is KL-divergence.
+% \begin{figure}[h!]
+% \begin{center}
+% \includegraphics[width=8cm]{./Figuras/KLDivergence1.pdf}
+% \end{center}
+% \end{figure}
+% \end{itemize}
+% The generalization of the KL-divergence is called I-divergence and it is calculated by:
+% \begin{equation}
+% d_{\phi}(\x,\y)=\x log\frac{\x}{\y}-(\x-\y).
+% \label{Idiv}
+% \end{equation}
+% \section{Clustering:}
+% This section is in processing!!! We would like to explain the clustering using Square Euclidean distance and I-divergence.
+% 
+% \section{Co-clustering:}
+% The co-clustering method is possible to develop in six cases. The explanation is developing using case 2 with I-divergence. However, the idea is to develop the six cases using the Square Euclidean distance and the I-divergence.\\
+% The case 2 consists on find the best row and columns groups that generated from the original matrix data ($\Z \in \R^{m \times n}$), a reduce matrix which elements are the mean of the elements of the original matrix data per row and column groups. That is: $Z_A = E[\Z|\hat{\U}\hat{\V}] = R^T\Z C$, where $R \in \{0,1\}^{m \times k}$ is a row cluster membership matrix and $C \in \{0,1\}^{n \times l}$ is column cluster membership matrix. The idea is optimized $R$ and $C$ to minimize the I-divergence. The first step is update $R$ matrix. To do that, it is necessary to define the Hadamand product between matrix (element by element): $\Z_A = \Z^{rowConst} \circ{} R \Z^{rowVar}$.
+% Before define $d_\phi(\Z,\Z_A)$, $\Z_A$ should be expanded: $\Z_A = R(R^T\Z C)C^T$. Then, using eq. \ref{Idiv}:
+% 
+% \begin{equation}
+% d_\phi(\Z,\Z_A) = \z log \frac{\Z}{\Z_A} - (\Z-\Z_A) = Z log \frac{\Z}{\Z^{rowConst} \circ{} R \Z^{rowVar}},
+% \end{equation}
+% where $\Z^{rowConst}$ and $\Z^{rowVar}$
+
+% So, the update of rows follows:
+
+% $$
+% \rho(\u) = \argmin d_\phi(\Z,\Z_A) = \argmin d_\phi(\Z,R(R^T\Z C)C^T) = 
+% $$
+% $$\argmin d_\phi(\Z,R(R^T\Z C)C^T) =  \argmin d_\phi(\Z C,R(R^T\Z C)) $$
+% $$= \argmin d_\phi(\Z^{rowRed},R (R^T\Z C))$$
+
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}
+
+
+% \begin{figure*}[t!]
+% \begin{center}
+% \setlength{\tabcolsep}{2pt}
+% \begin{tabular}{c c c c} 
+% May 22 (SOS) & May 30 (SOS) & June 26 (SOS) & July 29 (Max)\\
+% \includegraphics[height=3cm]{/home/emma/Congresos/2017_Multitemp/Zurita/Figuras/RGB_22May_opt.pdf}&
+% \includegraphics[height=3cm]{/home/emma/Congresos/2017_Multitemp/Zurita/Figuras/RGB_30May_opt.pdf}&
+% \includegraphics[height=3cm]{/home/emma/Congresos/2017_Multitemp/Zurita/Figuras/RGB_26Jun_opt.pdf}&
+% \includegraphics[height=3cm]{/home/emma/Congresos/2017_Multitemp/Zurita/Figuras/RGB_29July_opt.pdf}\\
+% October 18 (Min)& November 1 (Min)& November 14 (Min)\\
+% \includegraphics[height=3cm]{/home/emma/Congresos/2017_Multitemp/Zurita/Figuras/RGB_18Oct_opt.pdf}&
+% \includegraphics[height=3cm]{/home/emma/Congresos/2017_Multitemp/Zurita/Figuras/RGB_1Nov_opt.pdf} &  
+% \includegraphics[height=3cm]{/home/emma/Congresos/2017_Multitemp/Zurita/Figuras/RGB_14Nov_opt.pdf} & \\
+% \end{tabular}
+% \end{center}
+% \vspace{-0.5cm}
+% \caption{Farm field polygons (red) overlapping RGB time-series composites of the study area [SOS: Vegetation start of season, Max: Maximum range and Min: minimum range of the vegetation].}
+% \label{rgb:temp}
+% \end{figure*}
