@@ -12,7 +12,7 @@ Here we use [*k*-means](https://en.wikipedia.org/wiki/K-means_clustering) to ide
   Notebook | Brief description 
   --- | --- 
   [*k*-means_model](https://github.com/phenology/infrastructure/blob/master/applications/notebooks/stable/kmeans_model.ipynb) | For the extended spring indices: Loads Geo tiffs, creates data matrix, runs *k*-means, calculates WCSSE  
-  [*k*-means_satellite](https://github.com/phenology/infrastructure/blob/masterapplications/notebooks/stable/kmeans_satellite.ipynb) | same than above but for the AVHRR data
+  [*k*-means_satellite](https://github.com/phenology/infrastructure/blob/master/applications/notebooks/stable/kmeans_satellite.ipynb) | same than above but for the AVHRR data
   [kmeans_wssse](https://github.com/phenology/infrastructure/blob/master/applications/notebooks/stable/kmeans_wssse.ipynb) | To read and plot WCSSE (or WSSSE) values 
   [create_wssse_csv](https://github.com/phenology/infrastructure/blob/master/applications/notebooks/stable/create_wssse_csv.ipynb) | To load an Array of triples stored as object File and save it again as a CSV file
   [plot_kmeans_clusters](https://github.com/phenology/infrastructure/blob/master/applications/notebooks/stable/plot_kmeans_clusters.ipynb)| To plot the Geo Tiffs created out of kmeans. Such Geo Tiffs contain the cluster IDs
